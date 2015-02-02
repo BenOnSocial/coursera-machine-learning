@@ -16,10 +16,10 @@ function plotData(x, y)
 
 figure; % open a new figure window
 
-
-
-
-
+scatter(x, y)
+title('Scatter Plot of Training Data');
+xlabel('Population of City in 10,000s');
+ylabel('Profit in $10,000s');
 
 % ============================================================
 
