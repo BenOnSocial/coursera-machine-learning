@@ -17,12 +17,15 @@ for iter = 1:num_iters
     %       of the cost function (computeCost) and gradient here.
     %
 
-
-
-
-
-
-
+    predictions = X * theta;
+    errorTerm = predictions - y;
+    gradient = X' * errorTerm;
+    delta = (1 / m) * gradient;
+    newTheta = theta - (alpha * delta);
+    
+    % Update theta
+    theta = newTheta;
+    
     % ============================================================
 
     % Save the cost J in every iteration    
