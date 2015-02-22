@@ -17,10 +17,18 @@ grad = zeros(size(theta));
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
 
+z = X * theta;
+predictions = sigmoid(z);
+cost = (-y .* log(predictions)) - ((1 - y) .* log(1 - predictions));
+costRegularization = theta(2:end)' * theta(2:end);
+scaledCostRegularization = (lambda / (2 * m)) * costRegularization;
+J = (1 / m) * sum(cost) + scaledCostRegularization;
 
-
-
-
+% Mask out theta(1)
+mask = ones(size(theta));
+mask(1) = 0;
+gradientRegularization = ((lambda / m) * theta) .* mask;
+grad = (1 ./ m) * X' * (predictions - y) + gradientRegularization;
 
 % =============================================================
 
