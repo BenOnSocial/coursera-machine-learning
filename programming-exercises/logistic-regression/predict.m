@@ -15,11 +15,16 @@ p = zeros(m, 1);
 %               You should set p to a vector of 0's and 1's
 %
 
+z = X * theta;
+predictions = sigmoid(z);
 
+for example = 1:m
 
+    if predictions(example) >= 0.5
+        p(example) = 1;
+    endif
 
-
-
+end
 
 % =========================================================================
 
