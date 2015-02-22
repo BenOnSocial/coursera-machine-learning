@@ -2,4 +2,5 @@ submit.m
 submitWeb.m
 *.mat
 octave-workspace
+.DS_Store
 
