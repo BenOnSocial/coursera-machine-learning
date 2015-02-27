@@ -1,6 +1,7 @@
 submit.m
 submitWeb.m
 *.mat
+*.pdf
 octave-workspace
 .DS_Store
 
