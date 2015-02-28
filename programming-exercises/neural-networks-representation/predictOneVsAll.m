@@ -28,15 +28,18 @@ X = [ones(m, 1) X];
 %       max element, for more information see 'help max'. If your examples 
 %       are in rows, then, you can use max(A, [], 2) to obtain the max 
 %       for each row.
-%       
+%
 
+% Calculate all probabilities
+z = X * all_theta';
+h = sigmoid(z);
 
+% Identify the maximum probabilities and associated class/labels
+[max_values, indexes] = max(h, [], 2);
 
-
-
-
+% Return the predicted classes/labels as the vector p
+p = indexes;
 
 % =========================================================================
-
 
 end
