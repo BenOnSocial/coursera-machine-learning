@@ -21,13 +21,25 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% Add bias
+X = [ones(m, 1) X];
 
+% Calculate hidden layer
+z2 = X * Theta1';
+a2 = sigmoid(z2);
 
+% Add bias
+a2 = [ones(size(a2, 1), 1) a2];
 
+% Calculate outputs
+z3 = a2 * Theta2';
+h = sigmoid(z3);
 
+% Identify the maximum probabilities and associated class/labels
+[max_values, indexes] = max(h, [], 2);
 
-
-
+% Return the predicted classes/labels as the vector p
+p = indexes;
 
 % =========================================================================
 
