@@ -62,23 +62,45 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% Generalize input layer as an activation layer, a1.
+a1_bias = ones(size(X, 1), 1);
+a1 = [a1_bias, X];
 
+% Compute activation layer, a2.
+z2 = a1 * Theta1';
+a2 = sigmoid(z2);
 
+% Add a2 bias nodes.
+a2_bias = ones(size(a2, 1), 1);
+a2 = [a2_bias, a2];
 
+% Compute hypothesis.
+z3 = a2 * Theta2';
+a3 = sigmoid(z3);
 
+% Recode labels, y, as vectors.
+y_vector_lookup = eye(num_labels);
+Y = [];
+for y_index = 1:m
+  y_value = y(y_index);
+  Y = [Y; y_vector_lookup(y_value, :)];
+end
 
+cost = [];
 
+% Compute cost values for each training example.
+for example = 1:m
+  yi = Y(example, :);
+  xi = a3(example, :)';
+  first_term = -yi * log(xi);
+  second_term = (1 .- yi) * log(1 - xi);
 
+  % Collect computed cost terms
+  cost = [cost, sum(first_term - second_term)];
+end
 
-
-
-
-
-
-
-
-
-
+% Compute cost function
+J = (1 / m) * sum(cost);
 
 % -------------------------------------------------------------
 
@@ -86,6 +108,5 @@ Theta2_grad = zeros(size(Theta2));
 
 % Unroll gradients
 grad = [Theta1_grad(:) ; Theta2_grad(:)];
-
 
 end
