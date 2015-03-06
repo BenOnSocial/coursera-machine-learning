@@ -99,8 +99,19 @@ for example = 1:m
   cost = [cost, sum(first_term - second_term)];
 end
 
-% Compute cost function
+% Compute cost function.
 J = (1 / m) * sum(cost);
+
+% Compute regularization term.
+theta1 = Theta1(:, 2:end);
+theta2 = Theta2(:, 2:end);
+theta1_squared_sum = sum(sum(theta1' .^ 2));
+theta2_squared_sum = sum(sum(theta2' .^ 2));
+
+regularization_term = (lambda / (2 * m)) * (theta1_squared_sum + theta2_squared_sum);
+
+% Regularize the cost function.
+J = J + regularization_term;
 
 % -------------------------------------------------------------
 
