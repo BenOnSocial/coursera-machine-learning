@@ -115,6 +115,18 @@ J = J + regularization_term;
 
 % -------------------------------------------------------------
 
+% Compute deltas.
+delta3 = a3 - Y;
+delta2 = (delta3 * Theta2(:, 2:end)) .* sigmoidGradient(z2);
+
+% Compute capital deltas.
+Delta2 = delta3' * a2;
+Delta1 = delta2' * a1;
+
+% Compute theta gradients.
+Theta1_grad = Delta1 / m;
+Theta2_grad = Delta2 / m;
+
 % =========================================================================
 
 % Unroll gradients
