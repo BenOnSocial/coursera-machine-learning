@@ -127,6 +127,14 @@ Delta1 = delta2' * a1;
 Theta1_grad = Delta1 / m;
 Theta2_grad = Delta2 / m;
 
+% Regularize theta gradients, except for bias nodes.
+regularization_term1 = (lambda / m) * Theta1;
+regularization_term1(:, 1) = 0;
+regularization_term2 = (lambda / m) * Theta2;
+regularization_term2(:, 1) = 0;
+Theta1_grad = Theta1_grad + regularization_term1;
+Theta2_grad = Theta2_grad + regularization_term2;
+
 % =========================================================================
 
 % Unroll gradients
