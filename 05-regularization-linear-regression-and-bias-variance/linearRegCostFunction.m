@@ -19,16 +19,14 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
+% Compute non-regularized cost function.
+predictions = X * theta;
+errorTerm = predictions - y;
+J = (1 / (2 * m)) * (errorTerm)' * errorTerm;
 
-
-
-
-
-
-
-
-
-
+% Apply regularization.
+regularization_term = (lambda / (2 * m)) * sum(theta(2:end) .^ 2);
+J = J + regularization_term;
 
 % =========================================================================
 
