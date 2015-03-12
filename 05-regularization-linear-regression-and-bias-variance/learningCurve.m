@@ -51,15 +51,28 @@ error_val   = zeros(m, 1);
 %       end
 %
 
-% ---------------------- Sample Solution ----------------------
+for i = 1:m
+  % Subset the training examples and y labels.
+  X_1_to_i = X(1:i, :);
+  y_1_to_i = y(1:i);
 
+  % Learn the theta parameters for the first i examples.
+  theta = trainLinearReg(X_1_to_i, y_1_to_i, lambda);
 
+  % Compute J_train(theta).
+  j_train = linearRegCostFunction(X_1_to_i, y_1_to_i, theta, 0);
 
+  % Accumulate errors.
+  error_train(i) = j_train;
 
+  
+  % Compute J_cv(theta).
+  j_cv = linearRegCostFunction(Xval, yval, theta, 0);
 
+  % Accumulate errors.
+  error_val(i) = j_cv;
+end
 
-
-% -------------------------------------------------------------
 
 % =========================================================================
 
