@@ -30,6 +30,12 @@ J = J + regularization_term;
 
 % =========================================================================
 
+% Mask out theta(1)
+mask = ones(size(theta));
+mask(1) = 0;
+gradientRegularization = ((lambda / m) * theta) .* mask;
+grad = (1 ./ m) * X' * (predictions - y) + gradientRegularization;
+
 grad = grad(:);
 
 end
