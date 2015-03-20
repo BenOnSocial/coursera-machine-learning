@@ -48,12 +48,14 @@ x = zeros(n, 1);
 %
 %
 
-
-
-
-
-
-
+% Loop through the word indices
+for i = 1:length(word_indices)
+  % If the current word index is within the range of dictionary words
+  if (i <= n)
+    % Record the match
+    x(word_indices(i)) = 1;
+  end
+end
 
 % =========================================================================
     
