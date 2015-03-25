@@ -26,15 +26,18 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
-
-
-
-
-
-
+% Loop over each centroid
+for k = 1:K
+  % Get example index values for examples associated with mu k
+  Ck = find(idx == k);
+  % Create a matrix to represent the examples associated with mu k
+  examplesAssociatedWithCk = X(Ck, :);
+  
+  % Compute the means (of the same feature, i.e. DIM = 1) over the selected examples
+  centroids(k, :) = mean(examplesAssociatedWithCk, 1);
+endfor
 
 % =============================================================
-
 
 end
 
