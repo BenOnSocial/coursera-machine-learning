@@ -18,8 +18,11 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
+% Create U reduce by taking the first k columns of U
+Ureduce = U(:, 1:K);
 
-
+% Compute projections
+Z = X * Ureduce;
 
 % =============================================================
 
