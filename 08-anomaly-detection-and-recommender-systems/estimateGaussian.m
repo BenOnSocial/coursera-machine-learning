@@ -21,16 +21,12 @@ sigma2 = zeros(n, 1);
 %               should contain variance of the i-th feature.
 %
 
+% Compute the mean of X
+mu = mean(X);
 
-
-
-
-
-
-
-
+% Compute sigma^2 using mu
+sigma2 = mean(bsxfun(@minus, X, mu) .^ 2);
 
 % =============================================================
-
 
 end
