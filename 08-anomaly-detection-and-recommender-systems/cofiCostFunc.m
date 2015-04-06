@@ -46,6 +46,11 @@ squared_errors = (predictions - Y) .^ 2;
 filtered_errors = squared_errors .* R;
 J = (1 / 2) * sum(sum(filtered_errors));
 
+% Apply regularization
+theta_regularization = (lambda / 2) * sum(sum(Theta .^ 2));
+x_regularization = (lambda / 2) * sum(sum(X .^ 2));
+J = J + theta_regularization + x_regularization;
+
 % Compute reusable term for calculating gradients
 filtered_errors = (predictions - Y) .* R;
 
@@ -53,6 +58,12 @@ filtered_errors = (predictions - Y) .* R;
 X_grad = filtered_errors * Theta;
 % Compute theta gradient
 Theta_grad = filtered_errors' * X;
+
+% Apply regularization
+x_regularization = lambda * X;
+theta_regularization = lambda * Theta;
+X_grad = X_grad + x_regularization;
+Theta_grad = Theta_grad + theta_regularization;
 
 % =============================================================
 
