@@ -46,6 +46,9 @@ squared_errors = (predictions - Y) .^ 2;
 filtered_errors = squared_errors .* R;
 J = (1 / 2) * sum(sum(filtered_errors));
 
+% Compute reusable term for calculating gradients
+filtered_errors = (predictions - Y) .* R;
+
 % Compute X gradient
 X_grad = filtered_errors * Theta;
 % Compute theta gradient
